@@ -10,6 +10,24 @@ var users = require('./routes/users');
 
 var app = express();
 
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+
+const verify = (username, password, done) => {
+  console.log({username, password})
+  console.log('Yeah, this user is legit.')
+  const user = { fake: true }
+  const error = null
+  done(error, user)
+}
+
+const strategyInstance = new LocalStrategy(verify)
+
+console.log(strategyInstance)
+console.log(strategyInstance._verify.toString())
+
+passport.use(strategyInstance)
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -21,6 +39,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use(passport.initialize())
 
 app.use('/', index);
 app.use('/users', users);

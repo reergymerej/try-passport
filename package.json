@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "set -x DEBUG \"try-passport:*\"; nodemon .bin/www"
+    "dev": "set -x DEBUG \"try-passport:*\"; nodemon --inspect .bin/www"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
@@ -13,6 +13,8 @@
     "express": "~4.14.1",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "serve-favicon": "~2.3.2"
   },
   "devDependencies": {
